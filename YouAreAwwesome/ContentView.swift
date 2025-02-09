@@ -11,12 +11,13 @@ struct ContentView: View {
     
     @State private var message = ""
     @State private var imageName = ""
+    @State private var imageNumber = 99
     
     var body: some View {
         
         VStack {
             Spacer()
-            Image(imageName)
+            Image("image\(imageNumber)")
                 .resizable()
                 .scaledToFit()
                 .clipShape(RoundedRectangle(cornerRadius: 30))
@@ -26,13 +27,18 @@ struct ContentView: View {
                 .fontWeight(.heavy)
                 .foregroundStyle(.red)
             Spacer()
-            Button("Press Me!") {
+            Button("Show Message") {
+                
                 let message0 = "You are Great"
                 let message1 = "You are Awesome!"
                 
-                imageName = imageName == "image1" ? "image0" : "image1"
                 message = message == message1 ? message0 : message1
-
+//TODO: - Update the imageName variable -
+                imageNumber += 1
+                if imageNumber > 9 {
+                    imageNumber = 0
+                }
+                print(imageNumber)
             }
             .buttonStyle(.borderedProminent)
             .font(.title2)
